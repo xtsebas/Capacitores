@@ -30,3 +30,24 @@ class Esfera:
 
     def Energia(self):
         return (self.Carga() * self.voltaje)/2
+
+    def Densidad(self, a):
+        if (self.dielectrico != 0):
+            if (a==1):
+                D = self.Carga() / (2 * np.pi * (self.Ri**2))
+            else:
+                D = self.Carga() / (2 * np.pi * (self.Re ** 2))
+        else:
+            D=0
+        return D
+
+    def DensidadLigada(self, a):
+        if (self.dielectrico != 0):
+            if (a==1):
+                D = self.Densidad()(1 - 1 / self.k)
+            else:
+                D = self.Densidad() (1 - 1/self.k)
+
+        else:
+            D=0
+        return D

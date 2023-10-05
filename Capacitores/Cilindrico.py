@@ -32,3 +32,24 @@ class Cilindrico:
 
     def Energia(self):
         return (self.voltaje * self.Carga())/2
+
+    def Densidad(self, a):
+        if (self.dielectrico != 0):
+            if (a == 1):
+                D = self.Carga() / (2 * np.pi * self.Ri *(self.Ri + self.largo))
+            else:
+                D = self.Carga() / (2 * np.pi * self.Ri *(self.Re + self.largo))
+        else:
+            D = 0
+        return D
+
+    def DensidadLigada(self, a):
+        if (self.dielectrico != 0):
+            if (a == 1):
+                D = self.Densidad()(1 - 1 / self.k)
+            else:
+                D = self.Densidad()(1 - 1 / self.k)
+
+        else:
+            D = 0
+        return D

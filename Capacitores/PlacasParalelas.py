@@ -32,3 +32,17 @@ class Placas:
 
     def Area(self):
         return self.lado * self.ancho
+
+    def Densidad(self):
+        if (self.dielectrico != 0):
+            D = self.Carga() / self.Area()
+        else:
+            D=0
+        return D
+
+    def DensidadLigada(self):
+        if (self.dielectrico != 0):
+            D = self.Densidad() (1 - 1/self.k)
+        else:
+            D=0
+        return D
