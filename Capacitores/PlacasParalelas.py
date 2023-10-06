@@ -35,14 +35,17 @@ class Placas:
 
     def Densidad(self):
         if (self.dielectrico != 0):
-            D = self.Carga() / self.Area()
+            if  (self.dielectrico == 1):
+                D = self.Carga() / self.Area()
+            else:
+                D = self.Carga() / (self.Area()/2)
         else:
             D=0
         return D
 
     def DensidadLigada(self):
         if (self.dielectrico != 0):
-            D = self.Densidad() (1 - 1/self.k)
+            D = self.Densidad() * (1 - 1/self.k)
         else:
             D=0
         return D
