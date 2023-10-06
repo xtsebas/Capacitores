@@ -2,18 +2,21 @@ from PyQt5.QtWidgets import *
 from PyQt5 import uic
 from PyQt5.QtGui import QPixmap
 import PlacasParalelas
+from PyQt5.QtCore import Qt
+
 
 
 class PlacasScreen(QMainWindow):
 
     def __init__(self,main_window=None):
+        self.y=881
         super(PlacasScreen,self).__init__()
         uic.loadUi("placas_paralelas.ui",self)
 
         #Guardando variable
         self.main_window = main_window
         self.imageLabel.setVisible(False)
-        self.setFixedSize(664, 709)
+        self.setFixedSize(664, self.y)
 
 
         """
@@ -48,11 +51,11 @@ class PlacasScreen(QMainWindow):
         #self.imageLabel.setPixmap(pixmap)
         #self.imageLabel.setScaledContents(True)
 
-        #batteryPixMap = QPixmap("battery.png")
-        # = batteryPixMap.scaled(100, 100, Qt.KeepAspectRatio)
+        batteryPixMap = QPixmap("battery.png")
+        batteryPixMap= batteryPixMap.scaled(100, 100, Qt.KeepAspectRatio)
 
-        #self.batteryLabel.setPixmap(batteryPixMap)
-        #self.batteryLabel.setFixedSize(100, 100)
+        self.batteryLabel.setPixmap(batteryPixMap)
+        self.batteryLabel.setFixedSize(100, 100)
 
 
         self.show()
@@ -92,7 +95,7 @@ class PlacasScreen(QMainWindow):
 
         print("Realizando calculos....")
         self.imageLabel.setVisible(True)
-        self.setFixedSize(1253, 709)
+        self.setFixedSize(1253, self.y)
 
         #Obteniendo valores de usuario
 
@@ -117,6 +120,10 @@ class PlacasScreen(QMainWindow):
         print(dimension)
 
         if placa=="No":
+
+            #Modificando tamano de frame
+            self.informationLabel.resize(521, 271)
+
             #Se escogio con vacio
             print("Capacitor con placas paralelas vacias")
             placas_vacias = QPixmap("placa_vacia.png")
@@ -136,10 +143,16 @@ class PlacasScreen(QMainWindow):
             print("carga_placa" + str(carga_placa))
             print("energia" + str(energia))
 
+            self.capacitanciaLabel.setText(str(capacitancia)+" F")
+            self.cargaLabel.setText(str(carga_placa) + " C")
+            self.energiaLabel.setText(str(energia) + " J")
+
+
 
 
 
         if placa=="Si" and dimension == "Completo":
+            self.informationLabel.resize(521, 441)
             #Se escogio con vacio
             print("Capacitor con placas con dielectrico completo")
             placas_kcompleto= QPixmap("placa_kcompleto.png")
@@ -163,9 +176,15 @@ class PlacasScreen(QMainWindow):
             print("carga_libre" + str(carga_libre))
             print("carga_ligada" + str(carga_ligada))
 
-
+            self.capacitanciaLabel.setText(str(capacitancia)+" F")
+            self.cargaLabel.setText(str(carga_placa) + " C")
+            self.energiaLabel.setText(str(energia) + " J")
+            self.cargalibreLabel.setText(str(carga_libre) + "C")
+            self.cargaligadaLabel.setText(str(carga_ligada) + " C")
 
         if placa == "Si" and dimension == "A la mitad":
+            self.informationLabel.resize(521, 441)
+
             print("Capacitor con placas con dielectrico a la mitad")
             placas_kmitad = QPixmap("placa_kmitad.png")
             self.imageLabel.setPixmap(placas_kmitad)
@@ -189,6 +208,8 @@ class PlacasScreen(QMainWindow):
             print("carga_libre" + str(carga_libre))
             print("carga_ligada" + str(carga_ligada))
 
-
-
-
+            self.capacitanciaLabel.setText(str(capacitancia)+" F")
+            self.cargaLabel.setText(str(carga_placa) + " C")
+            self.energiaLabel.setText(str(energia) + " J")
+            self.cargalibreLabel.setText(str(carga_libre) + " C")
+            self.cargaligadaLabel.setText(str(carga_ligada) + " C")

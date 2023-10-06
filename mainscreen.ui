@@ -6,12 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>795</width>
-    <height>408</height>
+    <width>752</width>
+    <height>372</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Propiedades de los capacitores</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(32, 37, 40);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="paralelasButton">
@@ -23,6 +26,18 @@
       <height>231</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Tahoma</family>
+      <pointsize>16</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(43, 46, 51);
+color: rgb(255, 255, 255);</string>
+    </property>
     <property name="text">
      <string>Paralelas</string>
     </property>
@@ -30,40 +45,76 @@
    <widget class="QPushButton" name="esfericoButton">
     <property name="geometry">
      <rect>
-      <x>290</x>
+      <x>270</x>
       <y>90</y>
       <width>211</width>
       <height>231</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Tahoma</family>
+      <pointsize>16</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(43, 46, 51);
+color: rgb(255, 255, 255);</string>
+    </property>
     <property name="text">
-     <string>Esferico</string>
+     <string>Esférico</string>
     </property>
    </widget>
    <widget class="QPushButton" name="cilindricoButton">
     <property name="geometry">
      <rect>
-      <x>520</x>
+      <x>500</x>
       <y>90</y>
       <width>211</width>
       <height>231</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Tahoma</family>
+      <pointsize>16</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(43, 46, 51);
+color: rgb(255, 255, 255);</string>
+    </property>
     <property name="text">
-     <string>Cilindrico</string>
+     <string>Cilíndrico</string>
     </property>
    </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>340</x>
+      <x>280</x>
       <y>30</y>
-      <width>251</width>
+      <width>201</width>
       <height>20</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Tahoma</family>
+      <pointsize>14</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: transparent;
+color: rgb(255, 255, 255);</string>
+    </property>
     <property name="text">
-     <string>Capacitores</string>
+     <string>Tipos de Capacitores</string>
     </property>
    </widget>
   </widget>
@@ -72,7 +123,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>795</width>
+     <width>752</width>
      <height>21</height>
     </rect>
    </property>

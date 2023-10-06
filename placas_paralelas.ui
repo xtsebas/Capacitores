@@ -6,22 +6,36 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1253</width>
-    <height>709</height>
+    <width>1257</width>
+    <height>881</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Capacitor de placas paralelas</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(32, 37, 40);</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>260</x>
-      <y>30</y>
-      <width>141</width>
-      <height>16</height>
+      <x>220</x>
+      <y>40</y>
+      <width>241</width>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Tahoma</family>
+      <pointsize>18</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string>Ajustes de capacitor</string>
@@ -31,9 +45,9 @@
     <property name="geometry">
      <rect>
       <x>160</x>
-      <y>60</y>
+      <y>130</y>
       <width>101</width>
-      <height>121</height>
+      <height>91</height>
      </rect>
     </property>
     <property name="minimum">
@@ -59,18 +73,23 @@
     <property name="geometry">
      <rect>
       <x>70</x>
-      <y>100</y>
-      <width>91</width>
+      <y>160</y>
+      <width>111</width>
       <height>41</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>Segoe UI Variable Display Semib</family>
+      <family>Tahoma</family>
       <pointsize>16</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+background-color: transparent;
+</string>
     </property>
     <property name="text">
      <string>Voltaje</string>
@@ -79,19 +98,24 @@
    <widget class="QLabel" name="voltajeLabel">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>90</y>
+      <x>450</x>
+      <y>150</y>
       <width>91</width>
       <height>61</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>Segoe UI Variable Display Semib</family>
-      <pointsize>28</pointsize>
+      <family>Tahoma</family>
+      <pointsize>24</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+background-color: transparent;
+</string>
     </property>
     <property name="text">
      <string>1V</string>
@@ -100,11 +124,14 @@
    <widget class="QProgressBar" name="voltajeBar">
     <property name="geometry">
      <rect>
-      <x>270</x>
-      <y>90</y>
-      <width>171</width>
-      <height>61</height>
+      <x>260</x>
+      <y>140</y>
+      <width>181</width>
+      <height>81</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 10px;</string>
     </property>
     <property name="minimum">
      <number>1</number>
@@ -122,55 +149,72 @@
    <widget class="QComboBox" name="dielectricoComboBox">
     <property name="geometry">
      <rect>
-      <x>170</x>
-      <y>480</y>
+      <x>180</x>
+      <y>620</y>
       <width>121</width>
       <height>41</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>Segoe UI Variable Display Semib</family>
+      <family>Tahoma</family>
       <pointsize>12</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-color: rgb(170, 255, 255);
+color: rgb(255, 255, 255);
+border-radius: 10px;</string>
     </property>
    </widget>
    <widget class="QComboBox" name="dimensionComboBox">
     <property name="geometry">
      <rect>
-      <x>400</x>
-      <y>480</y>
+      <x>350</x>
+      <y>620</y>
       <width>121</width>
       <height>41</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>Segoe UI Variable Display Semib</family>
+      <family>Tahoma</family>
       <pointsize>12</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+color: rgb(255, 255, 255);
+border-radius: 10px;
+dimensionComboBox::item { color: white; }
+</string>
     </property>
    </widget>
    <widget class="QPushButton" name="calculateButton">
     <property name="geometry">
      <rect>
-      <x>230</x>
-      <y>570</y>
-      <width>231</width>
+      <x>120</x>
+      <y>730</y>
+      <width>421</width>
       <height>71</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>Segoe UI Variable Display Semib</family>
-      <pointsize>12</pointsize>
+      <family>Tahoma</family>
+      <pointsize>16</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 10px;
+color: rgb(255, 255, 255);
+background-color: rgb(43, 46, 51);</string>
     </property>
     <property name="text">
      <string>Mostrar capacitor</string>
@@ -180,13 +224,15 @@
     <property name="geometry">
      <rect>
       <x>680</x>
-      <y>70</y>
+      <y>30</y>
       <width>521</width>
       <height>331</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 255);</string>
+     <string notr="true">background-color: rgb(255, 255, 255);
+border: 2px solid black;
+border-radius: 10px;</string>
     </property>
     <property name="text">
      <string/>
@@ -196,18 +242,22 @@
     <property name="geometry">
      <rect>
       <x>520</x>
-      <y>200</y>
-      <width>141</width>
-      <height>78</height>
+      <y>280</y>
+      <width>81</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>Segoe UI Variable Display Semib</family>
-      <pointsize>20</pointsize>
+      <family>Tahoma</family>
+      <pointsize>14</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(43, 46, 51);</string>
     </property>
     <property name="text">
      <string>1 cm</string>
@@ -217,18 +267,22 @@
     <property name="geometry">
      <rect>
       <x>520</x>
-      <y>290</y>
-      <width>101</width>
-      <height>78</height>
+      <y>380</y>
+      <width>81</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>Segoe UI Variable Display Semib</family>
-      <pointsize>20</pointsize>
+      <family>Tahoma</family>
+      <pointsize>14</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(43, 46, 51);</string>
     </property>
     <property name="text">
      <string>1 cm</string>
@@ -237,11 +291,14 @@
    <widget class="QSlider" name="anchoSlider">
     <property name="geometry">
      <rect>
-      <x>270</x>
-      <y>320</y>
+      <x>260</x>
+      <y>387</y>
       <width>241</width>
-      <height>28</height>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(43, 46, 51);</string>
     </property>
     <property name="minimum">
      <number>1</number>
@@ -256,19 +313,23 @@
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>290</y>
+      <x>70</x>
+      <y>380</y>
       <width>191</width>
-      <height>78</height>
+      <height>51</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>Segoe UI Variable Display Semib</family>
-      <pointsize>16</pointsize>
+      <family>Tahoma</family>
+      <pointsize>14</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(43, 46, 51);</string>
     </property>
     <property name="text">
      <string>Ancho de placa</string>
@@ -277,11 +338,14 @@
    <widget class="QSlider" name="separacionSlider">
     <property name="geometry">
      <rect>
-      <x>264</x>
-      <y>230</y>
+      <x>260</x>
+      <y>290</y>
       <width>241</width>
-      <height>28</height>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(43, 46, 51);</string>
     </property>
     <property name="minimum">
      <number>1</number>
@@ -297,60 +361,115 @@
     <property name="geometry">
      <rect>
       <x>70</x>
-      <y>200</y>
-      <width>191</width>
-      <height>78</height>
+      <y>280</y>
+      <width>171</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>Segoe UI Variable Display Semib</family>
-      <pointsize>16</pointsize>
+      <family>Tahoma</family>
+      <pointsize>14</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(43, 46, 51);</string>
     </property>
     <property name="text">
      <string>Separación (d)</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_4">
+   <widget class="QLabel" name="batteryLabel">
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>380</y>
-      <width>181</width>
-      <height>78</height>
+      <x>520</x>
+      <y>130</y>
+      <width>71</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: transparent;
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>580</y>
+      <width>81</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>Segoe UI Variable Display Semib</family>
-      <pointsize>16</pointsize>
+      <family>Tahoma</family>
+      <pointsize>12</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+background-color: transparent;
+</string>
+    </property>
     <property name="text">
-     <string>Largo de placa</string>
+     <string>Deléctrico</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>580</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Tahoma</family>
+      <pointsize>12</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+background-color: transparent;</string>
+    </property>
+    <property name="text">
+     <string>Dimensión</string>
     </property>
    </widget>
    <widget class="QLabel" name="largoLabel">
     <property name="geometry">
      <rect>
       <x>520</x>
-      <y>380</y>
-      <width>141</width>
-      <height>78</height>
+      <y>480</y>
+      <width>91</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>Segoe UI Variable Display Semib</family>
-      <pointsize>20</pointsize>
+      <family>Tahoma</family>
+      <pointsize>14</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(43, 46, 51);</string>
     </property>
     <property name="text">
      <string>1 cm</string>
@@ -359,11 +478,15 @@
    <widget class="QSlider" name="largoSlider">
     <property name="geometry">
      <rect>
-      <x>270</x>
-      <y>410</y>
+      <x>260</x>
+      <y>490</y>
       <width>241</width>
-      <height>28</height>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(43, 46, 51);</string>
     </property>
     <property name="minimum">
      <number>1</number>
@@ -375,26 +498,739 @@
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QLabel" name="batteryLabel">
+   <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>540</x>
-      <y>80</y>
-      <width>71</width>
-      <height>71</height>
+      <x>70</x>
+      <y>480</y>
+      <width>171</width>
+      <height>51</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Tahoma</family>
+      <pointsize>14</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(43, 46, 51);</string>
+    </property>
+    <property name="text">
+     <string>Largo de placa</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="imageLabel_2">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>460</y>
+      <width>571</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(43, 46, 51);
+border-radius: 10px;</string>
     </property>
     <property name="text">
      <string/>
     </property>
    </widget>
+   <widget class="QLabel" name="imageLabel_3">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>360</y>
+      <width>571</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(43, 46, 51);
+border-radius: 10px;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="imageLabel_4">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>260</y>
+      <width>571</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(43, 46, 51);
+border-radius: 10px;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="imageLabel_5">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>110</y>
+      <width>571</width>
+      <height>141</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(43, 46, 51);
+border-radius: 10px;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="imageLabel_6">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>560</y>
+      <width>571</width>
+      <height>121</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(43, 46, 51);
+border-radius: 10px;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QFrame" name="informationLabel">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>390</y>
+      <width>521</width>
+      <height>441</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 10px;
+background-color: rgb(38, 42, 47);</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QFrame" name="frame">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>30</y>
+       <width>461</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-radius: 10px;
+background-color: rgb(32, 37, 40);</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <widget class="QFrame" name="frame_2">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>70</y>
+        <width>481</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-radius: 10px;</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_8">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>10</y>
+        <width>121</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Tahoma</family>
+        <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);
+background-color: transparent;
+</string>
+      </property>
+      <property name="text">
+       <string>Capacitancia</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="capacitanciaLabel">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>20</y>
+        <width>281</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Tahoma</family>
+        <pointsize>12</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);
+background-color: transparent;
+</string>
+      </property>
+      <property name="text">
+       <string>label</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QFrame" name="frame_3">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>110</y>
+       <width>461</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-radius: 10px;
+background-color: rgb(32, 37, 40);</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <widget class="QFrame" name="frame_6">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>70</y>
+        <width>481</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-radius: 10px;</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_9">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>10</y>
+        <width>61</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Tahoma</family>
+        <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);
+background-color: transparent;
+</string>
+      </property>
+      <property name="text">
+       <string>Carga</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="cargaLabel">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>20</y>
+        <width>281</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Tahoma</family>
+        <pointsize>12</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);
+background-color: transparent;
+</string>
+      </property>
+      <property name="text">
+       <string>label</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QFrame" name="frame_7">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>190</y>
+       <width>461</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-radius: 10px;
+background-color: rgb(32, 37, 40);</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <widget class="QFrame" name="frame_8">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>70</y>
+        <width>481</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-radius: 10px;</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+     </widget>
+     <widget class="QFrame" name="frame_9">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>40</y>
+        <width>461</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-radius: 10px;</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <widget class="QFrame" name="frame_10">
+       <property name="geometry">
+        <rect>
+         <x>240</x>
+         <y>70</y>
+         <width>481</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-radius: 10px;</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QLabel" name="label_10">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>10</y>
+        <width>91</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Tahoma</family>
+        <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);
+background-color: transparent;
+</string>
+      </property>
+      <property name="text">
+       <string>Energía</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="energiaLabel">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>20</y>
+        <width>281</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Tahoma</family>
+        <pointsize>12</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);
+background-color: transparent;
+</string>
+      </property>
+      <property name="text">
+       <string>label</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QFrame" name="frame_11">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>270</y>
+       <width>461</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-radius: 10px;
+background-color: rgb(32, 37, 40);</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <widget class="QFrame" name="frame_12">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>70</y>
+        <width>481</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-radius: 10px;</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+     </widget>
+     <widget class="QFrame" name="frame_13">
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>40</y>
+        <width>461</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-radius: 10px;</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <widget class="QFrame" name="frame_14">
+       <property name="geometry">
+        <rect>
+         <x>240</x>
+         <y>70</y>
+         <width>481</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-radius: 10px;</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QLabel" name="label_11">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>111</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Tahoma</family>
+        <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);
+background-color: transparent;
+</string>
+      </property>
+      <property name="text">
+       <string>Carga Libre</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="cargalibreLabel">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>20</y>
+        <width>281</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Tahoma</family>
+        <pointsize>12</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);
+background-color: transparent;
+</string>
+      </property>
+      <property name="text">
+       <string>label</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QFrame" name="frame_15">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>350</y>
+       <width>461</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-radius: 10px;
+background-color: rgb(32, 37, 40);</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <widget class="QFrame" name="frame_16">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>70</y>
+        <width>481</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-radius: 10px;</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+     </widget>
+     <widget class="QFrame" name="frame_17">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>60</y>
+        <width>461</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-radius: 10px;</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <widget class="QFrame" name="frame_18">
+       <property name="geometry">
+        <rect>
+         <x>240</x>
+         <y>70</y>
+         <width>481</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-radius: 10px;</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QLabel" name="label_12">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>131</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Tahoma</family>
+        <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);
+background-color: transparent;
+</string>
+      </property>
+      <property name="text">
+       <string>Carga Ligada</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="cargaligadaLabel">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>20</y>
+        <width>281</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Tahoma</family>
+        <pointsize>12</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);
+background-color: transparent;
+</string>
+      </property>
+      <property name="text">
+       <string>label</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <zorder>label</zorder>
+   <zorder>calculateButton</zorder>
+   <zorder>imageLabel</zorder>
+   <zorder>imageLabel_2</zorder>
+   <zorder>largoLabel</zorder>
+   <zorder>largoSlider</zorder>
+   <zorder>label_4</zorder>
+   <zorder>imageLabel_3</zorder>
+   <zorder>anchoLabel</zorder>
+   <zorder>anchoSlider</zorder>
+   <zorder>label_5</zorder>
+   <zorder>imageLabel_4</zorder>
+   <zorder>separacionSlider</zorder>
+   <zorder>label_3</zorder>
+   <zorder>separacionLabel</zorder>
+   <zorder>imageLabel_5</zorder>
+   <zorder>label_2</zorder>
+   <zorder>dial</zorder>
+   <zorder>voltajeBar</zorder>
+   <zorder>batteryLabel</zorder>
+   <zorder>voltajeLabel</zorder>
+   <zorder>imageLabel_6</zorder>
+   <zorder>label_6</zorder>
+   <zorder>label_7</zorder>
+   <zorder>dimensionComboBox</zorder>
+   <zorder>dielectricoComboBox</zorder>
+   <zorder>informationLabel</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1253</width>
+     <width>1257</width>
      <height>21</height>
     </rect>
    </property>
