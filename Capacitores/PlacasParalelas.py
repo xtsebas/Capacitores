@@ -15,8 +15,8 @@ class Placas:
             C = self.k  * ((self.e0 * self.Area()) / self.distancia)
 
         elif (self.dielectrico == 2):
-            C1 = self.k  * ((self.e0 * self.Area()) / 2 * self.distancia)
-            C2 = (self.e0 * self.Area())/ 2 * self.distancia
+            C2 = (self.e0 * (self.lado / 2) * self.ancho) / self.distancia
+            C1 = self.k  * C2
             C = C1 + C2
 
         else:
@@ -25,27 +25,40 @@ class Placas:
         return C
 
     def Carga(self):
-        return self.voltaje * self.Capacitancia()
+        return self.voltaje * ((self.e0*self.Area())/self.distancia)
 
     def Energia(self):
-        return ((self.voltaje**2) * self.Capacitancia())/2
+        if  (self.dielectrico==1):
+            U = ((self.Capacitancia()) * ((self.voltaje/self.k) **2))/2
+
+        elif (self.dielectrico ==2):
+            U = ((self.voltaje**2) * ((self.e0 * self.Area())/self.distancia)/2)/2 + (( (self.voltaje/self.k)**2)*(self.Capacitancia()/2))/2
+
+        else:
+            U = ((self.voltaje**2) * self.Capacitancia())/2
+
+        return U
 
     def Area(self):
         return self.lado * self.ancho
 
-    def Densidad(self):
+    # Tenes que ingresar un numero, 1 para encontrar la densidad del vacio, y 2 para encontrar la densidad del dielectrico
+    def Densidad(self, a):
         if (self.dielectrico != 0):
             if  (self.dielectrico == 1):
                 D = self.Carga() / self.Area()
             else:
-                D = self.Carga() / (self.Area()/2)
+                if(a==1):
+                    D = (self.Carga() / (self.k + 1))/(self.Area()/2)
+                else:
+                    D= ((self.Carga() * self.k) / (self.k + 1))/(self.Area()/2)
         else:
             D=0
         return D
 
     def DensidadLigada(self):
         if (self.dielectrico != 0):
-            D = self.Densidad() * (1 - 1/self.k)
+            D = self.Densidad(2) * (1 - (1/self.k))
         else:
             D=0
         return D
