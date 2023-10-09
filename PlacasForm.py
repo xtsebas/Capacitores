@@ -52,10 +52,10 @@ class PlacasScreen(QMainWindow):
         #self.imageLabel.setScaledContents(True)
 
         batteryPixMap = QPixmap("battery.png")
-        batteryPixMap= batteryPixMap.scaled(100, 100, Qt.KeepAspectRatio)
+        batteryPixMap= batteryPixMap.scaled(80, 80, Qt.KeepAspectRatio)
 
         self.batteryLabel.setPixmap(batteryPixMap)
-        self.batteryLabel.setFixedSize(100, 100)
+        self.batteryLabel.setFixedSize(80, 80)
 
 
         self.show()
@@ -70,13 +70,13 @@ class PlacasScreen(QMainWindow):
         self.voltajeBar.setValue(voltaje)
 
     def separationChange(self,separation):
-        self.separacionLabel.setText(str(separation) + " cm")
+        self.separacionLabel.setText(str(separation) + " m")
 
     def anchoChange(self,ancho):
-        self.anchoLabel.setText(str(ancho) + " cm")
+        self.anchoLabel.setText(str(ancho) + " m")
 
     def largoChange(self,largo):
-        self.largoLabel.setText(str(largo) + " cm")
+        self.largoLabel.setText(str(largo) + " m")
 
     """
     Funciones de navegacion
@@ -120,6 +120,7 @@ class PlacasScreen(QMainWindow):
         print(dimension)
 
         if placa=="No":
+            self.setFixedSize(1253, self.y)
 
             #Modificando tamano de frame
             self.informationLabel.resize(521, 271)
@@ -129,7 +130,7 @@ class PlacasScreen(QMainWindow):
             placas_vacias = QPixmap("placa_vacia.png")
             self.imageLabel.setPixmap(placas_vacias)
             self.imageLabel.setScaledContents(True)
-            placa_vacia = PlacasParalelas.Placas(voltaje, separacion / 100, largo / 100, ancho / 100, 0)
+            placa_vacia = PlacasParalelas.Placas(voltaje, separacion, largo, ancho, 0)
 
             #Propiedades fisicas
             capacitancia = placa_vacia.Capacitancia()
@@ -148,68 +149,50 @@ class PlacasScreen(QMainWindow):
             self.energiaLabel.setText(str(energia) + " J")
 
 
-
-
-
         if placa=="Si" and dimension == "Completo":
-            self.informationLabel.resize(521, 441)
+
+            self.informationLabel.resize(521, 431)
             #Se escogio con vacio
             print("Capacitor con placas con dielectrico completo")
             placas_kcompleto= QPixmap("placa_kcompleto.png")
             self.imageLabel.setPixmap(placas_kcompleto)
             self.imageLabel.setScaledContents(True)
-            placa_dieCom = PlacasParalelas.Placas(voltaje, separacion / 100, largo / 100, ancho / 100, 1)
+            placa_dieCom = PlacasParalelas.Placas(voltaje, separacion, largo, ancho, 1)
 
-            #Propiedades
-            capacitancia = placa_dieCom.Capacitancia()
-            voltaje_placa = placa_dieCom.voltaje
-            carga_placa = placa_dieCom.Carga()
-            energia = placa_dieCom.Energia()
-            carga_libre = placa_dieCom.Densidad()
-            carga_ligada = placa_dieCom.DensidadLigada()
+            print(placa_dieCom.Capacitancia())
+            print(placa_dieCom.Carga())
+            print(placa_dieCom.Energia())
+            print(placa_dieCom.Densidad(0))  # Libre
+            print(placa_dieCom.DensidadLigada())  # Ligada
 
-            print("============\nPropiedades\n===============")
-            print("Capacitancia" +str(capacitancia))
-            print("voltaje_placa" + str(voltaje_placa))
-            print("carga_placa" + str(carga_placa))
-            print("energia" + str(energia))
-            print("carga_libre" + str(carga_libre))
-            print("carga_ligada" + str(carga_ligada))
-
-            self.capacitanciaLabel.setText(str(capacitancia)+" F")
-            self.cargaLabel.setText(str(carga_placa) + " C")
-            self.energiaLabel.setText(str(energia) + " J")
-            self.cargalibreLabel.setText(str(carga_libre) + "C")
-            self.cargaligadaLabel.setText(str(carga_ligada) + " C")
+            self.capacitanciaLabel.setText(str(placa_dieCom.Capacitancia()) + " F")
+            self.cargaLabel.setText(str(placa_dieCom.Carga()) + " C")
+            self.energiaLabel.setText(str(placa_dieCom.Energia()) + " J")
+            self.cargalibreLabel.setText(str(placa_dieCom.Densidad(0)) + " C")
+            self.cargaligadaLabel.setText(str(placa_dieCom.DensidadLigada()) + " C")
 
         if placa == "Si" and dimension == "A la mitad":
-            self.informationLabel.resize(521, 441)
+            self.setFixedSize(1253,966)
+
+            self.informationLabel.resize(521, 521)
 
             print("Capacitor con placas con dielectrico a la mitad")
             placas_kmitad = QPixmap("placa_kmitad.png")
             self.imageLabel.setPixmap(placas_kmitad)
             self.imageLabel.setScaledContents(True)
-            placa_dieMitad = PlacasParalelas.Placas(voltaje, separacion / 100, largo / 100, ancho / 100, 2)
+            placa_dieMitad = PlacasParalelas.Placas(voltaje, separacion, largo, ancho , 2)
 
-            # Propiedades
-            capacitancia = placa_dieMitad.Capacitancia()
-            voltaje_placa = placa_dieMitad.voltaje
-            carga_placa = placa_dieMitad.Carga()
-            energia = placa_dieMitad.Energia()
-            carga_libre = placa_dieMitad.Densidad()
-            carga_ligada = placa_dieMitad.DensidadLigada()
+            print(placa_dieMitad.Capacitancia())
+            print(placa_dieMitad.Carga())
+            print(placa_dieMitad.Energia())
+            print(placa_dieMitad.Densidad(1))  # Libre de aire
+            print(placa_dieMitad.Densidad(2))  # Libre de plexiglas
+            print(placa_dieMitad.DensidadLigada())  # Ligada de plexiglas
 
+            self.capacitanciaLabel.setText(str(placa_dieMitad.Capacitancia())+" F")
+            self.cargaLabel.setText(str(placa_dieMitad.Carga())+" C")
+            self.energiaLabel.setText(str(placa_dieMitad.Energia())+" J")
+            self.cargalibreLabel.setText("(aire) "+str(placa_dieMitad.Densidad(1))+" C")
+            self.cargaligadaLabel.setText(str(placa_dieMitad.DensidadLigada())+" C")
+            self.librePlexiLabel.setText("(plexiglas) "+str(placa_dieMitad.Densidad(2))+" C")
 
-            print("============\nPropiedades\n===============")
-            print("Capacitancia" + str(capacitancia))
-            print("voltaje_placa" + str(voltaje_placa))
-            print("carga_placa" + str(carga_placa))
-            print("energia" + str(energia))
-            print("carga_libre" + str(carga_libre))
-            print("carga_ligada" + str(carga_ligada))
-
-            self.capacitanciaLabel.setText(str(capacitancia)+" F")
-            self.cargaLabel.setText(str(carga_placa) + " C")
-            self.energiaLabel.setText(str(energia) + " J")
-            self.cargalibreLabel.setText(str(carga_libre) + " C")
-            self.cargaligadaLabel.setText(str(carga_ligada) + " C")
