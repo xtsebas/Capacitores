@@ -2,19 +2,19 @@ from PyQt5.QtWidgets import *
 from PyQt5 import uic
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import Qt
-import PlacasParalelas
+import Esferico
 
 
 class EsfericosSreen(QMainWindow):
-
     def __init__(self,main_window=None):
+        self.y=742
         super(EsfericosSreen,self).__init__()
         uic.loadUi("esfericos_.ui",self)
 
         #Guardando variable
         self.main_window = main_window
         self.imageLabel.setVisible(False)
-        self.setFixedSize(664, 709)
+        self.setFixedSize(664, self.y)
 
 
         """
@@ -22,12 +22,12 @@ class EsfericosSreen(QMainWindow):
         """
         self.calculateButton.clicked.connect(self.mostrarCalculos)
 
+
         """
         Ajudstes de sliders
         """
-        self.separacionSlider.valueChanged.connect(self.separationChange)
-        self.anchoSlider.valueChanged.connect(self.anchoChange)
-        self.largoSlider.valueChanged.connect(self.largoChange)
+        self.radioASlider.valueChanged.connect(self.separationChange)
+        self.radioBSlider.valueChanged.connect(self.anchoChange)
 
 
         """
@@ -42,6 +42,7 @@ class EsfericosSreen(QMainWindow):
         self.dimensionComboBox.addItems(["Completo","A la mitad"])
 
         self.voltajeBar.setTextVisible(False)
+        self.adviseLabel.setVisible(False)
 
 
         #pixmap = QPixmap("image.png")
@@ -50,10 +51,10 @@ class EsfericosSreen(QMainWindow):
         #self.imageLabel.setScaledContents(True)
 
         batteryPixMap = QPixmap("battery.png")
-        batteryPixMap = batteryPixMap.scaled(100, 100, Qt.KeepAspectRatio)
+        batteryPixMap= batteryPixMap.scaled(80, 80, Qt.KeepAspectRatio)
 
         self.batteryLabel.setPixmap(batteryPixMap)
-        self.batteryLabel.setFixedSize(100, 100)
+        self.batteryLabel.setFixedSize(80, 80)
 
 
         self.show()
@@ -68,13 +69,13 @@ class EsfericosSreen(QMainWindow):
         self.voltajeBar.setValue(voltaje)
 
     def separationChange(self,separation):
-        self.separacionLabel.setText(str(separation) + " cm")
+        self.separacionLabel.setText(str(separation) + " m")
 
     def anchoChange(self,ancho):
-        self.anchoLabel.setText(str(ancho) + " cm")
+        self.anchoLabel.setText(str(ancho) + " m")
 
     def largoChange(self,largo):
-        self.largoLabel.setText(str(largo) + " cm")
+        self.largoLabel.setText(str(largo) + " m")
 
     """
     Funciones de navegacion
@@ -91,102 +92,109 @@ class EsfericosSreen(QMainWindow):
 
     def mostrarCalculos(self):
 
-        print("Realizando calculos....")
-        self.imageLabel.setVisible(True)
-        self.setFixedSize(1253, 709)
-
         #Obteniendo valores de usuario
 
-        voltaje = self.dial.value()
-        separacion = self.separacionSlider.value()
-        ancho = self.anchoSlider.value()
-        largo = self.largoSlider.value()
+        voltaje = self.dial.value() #Voltaje
+        radioA = self.radioASlider.value() ##Interno
+        radioB = self.radioBSlider.value() #Externo
 
-        print("Valor del voltaje: "+str(voltaje)+" "+str(type(voltaje)))
-        print("Valor del separacion: " + str(separacion) + " " + str(type(separacion)))
-        print("Valor del ancho: " + str(ancho) + " " + str(type(ancho)))
-        print("Valor del largo: " + str(largo) + " " + str(type(largo)))
-
-
-
+        print("Valor del voltaje: "+str(voltaje)+" "+ str(type(voltaje)))
+        print("Valor del radio A " + str(radioA) + " " + str(type(radioA)))
+        print("Valor del radio B: " + str(radioB) + " " + str(type(radioB)))
 
         #Selccionando imagen
-        placa = self.dielectricoComboBox.currentText()
-        print(placa)
+        esfera = self.dielectricoComboBox.currentText()
+        print(esfera)
 
         dimension = self.dimensionComboBox.currentText()
         print(dimension)
 
-        if placa=="No":
-            #Se escogio con vacio
-            print("Capacitor con placas paralelas vacias")
-            placas_vacias = QPixmap("placa_vacia.png")
-            self.imageLabel.setPixmap(placas_vacias)
-            self.imageLabel.setScaledContents(True)
-            placa_vacia = PlacasParalelas.Placas(voltaje, separacion / 100, largo / 100, ancho / 100, 0)
+        if radioA >= radioB:
 
-            #Propiedades fisicas
-            capacitancia = placa_vacia.Capacitancia()
-            voltaje_placa = placa_vacia.voltaje
-            carga_placa = placa_vacia.Carga()
-            energia = placa_vacia.Energia()
+            self.adviseLabel.setVisible(True)
+        else:
 
-            print("============\nPropiedades\n===============")
-            print("Capacitancia" + str(capacitancia))
-            print("voltaje_placa" + str(voltaje_placa))
-            print("carga_placa" + str(carga_placa))
-            print("energia" + str(energia))
+            #Dimensionando
+            print("Realizando calculos....")
+            self.imageLabel.setVisible(True)
+            self.setFixedSize(1253, self.y)
+            self.adviseLabel.setVisible(False)
 
+            if esfera=="No":
+                self.setFixedSize(1253, self.y)
 
+                #Modificando tamano de frame
+                self.informationLabel.resize(551, 171)
 
+                #Se escogio con vacio
+                print("Capacitor esferico sin dielectrico")
+                placas_vacias = QPixmap("esferico_.png") #Cambiar por esferico
+                self.imageLabel.setPixmap(placas_vacias)
+                self.imageLabel.setScaledContents(True)
 
-        if placa=="Si" and dimension == "Completo":
-            #Se escogio con vacio
-            print("Capacitor con placas con dielectrico completo")
-            placas_kcompleto= QPixmap("placa_kcompleto.png")
-            self.imageLabel.setPixmap(placas_kcompleto)
-            self.imageLabel.setScaledContents(True)
-            placa_dieCom = PlacasParalelas.Placas(voltaje, separacion / 100, largo / 100, ancho / 100, 1)
+                print("Valor del voltaje: " + str(voltaje) + " " + str(type(voltaje)))
+                print("Valor del radio A " + str(radioA) + " " + str(type(radioA)))
+                print("Valor del radio B: " + str(radioB) + " " + str(type(radioB)))
+                esfera = Esferico.Esfera(voltaje, radioA, radioB, 0)
 
-            #Propiedades
-            capacitancia = placa_dieCom.Capacitancia()
-            voltaje_placa = placa_dieCom.voltaje
-            carga_placa = placa_dieCom.Carga()
-            energia = placa_dieCom.Energia()
-            carga_libre = placa_dieCom.Densidad()
-            carga_ligada = placa_dieCom.DensidadLigada()
+                try:
+                    print(esfera.Capacitancia())
+                except Exception as e:
+                    print(f"An error occurred: {e}")
 
-            print("============\nPropiedades\n===============")
-            print("Capacitancia" +str(capacitancia))
-            print("voltaje_placa" + str(voltaje_placa))
-            print("carga_placa" + str(carga_placa))
-            print("energia" + str(energia))
-            print("carga_libre" + str(carga_libre))
-            print("carga_ligada" + str(carga_ligada))
+                #Label values
+                self.capacitanciaLabel.setText(str(esfera.Capacitancia()) + " F")
+                self.cargaLabel.setText(str(esfera.Carga()) + " C")
+                self.energiaLabel.setText(str(esfera.Energia()) + " J")
 
+            if esfera=="Si" and dimension == "Completo":
 
+                esferafull = Esferico.Esfera(voltaje, radioA, radioB ,1)
+                self.resize(1250,918)
 
-        if placa == "Si" and dimension == "A la mitad":
-            print("Capacitor con placas con dielectrico a la mitad")
-            placas_kmitad = QPixmap("placa_kmitad.png")
-            self.imageLabel.setPixmap(placas_kmitad)
-            self.imageLabel.setScaledContents(True)
-            placa_dieMitad = PlacasParalelas.Placas(voltaje, separacion / 100, largo / 100, ancho / 100, 2)
+                self.informationLabel.resize(551, 371)
 
-            # Propiedades
-            capacitancia = placa_dieMitad.Capacitancia()
-            voltaje_placa = placa_dieMitad.voltaje
-            carga_placa = placa_dieMitad.Carga()
-            energia = placa_dieMitad.Energia()
-            carga_libre = placa_dieMitad.Densidad()
-            carga_ligada = placa_dieMitad.DensidadLigada()
+                print("Capacitor con placas con dielectrico completo")
+                placas_kcompleto= QPixmap("esfericocompleto_.png")
+                self.imageLabel.setPixmap(placas_kcompleto)
+                self.imageLabel.setScaledContents(True)
+
+                self.capacitanciaLabel.setText(str(esferafull.Capacitancia()) + " F")
+                self.cargaLabel.setText(str(esferafull.Carga()) + " C")
+                self.energiaLabel.setText(str(esferafull.Energia()) + " J")
+
+                self.cargalibreLabel.setText("(R interno superior) " + str(esferafull.Densidad(1)) + " C/m^2")
+                self.cargaLibre2Label.setText("(R externo inferior) " + str(esferafull.DensidadLigada(1)) + "C/m^2")
+
+                self.cargaLigada1Label.setText("(R interior inferior) " + str(esferafull.Densidad(2)) + " C/m^2")
+                self.cargaLigada2Label.setText("(R exterior inferior) " + str(esferafull.DensidadLigada(2)) + " C/m^2")
 
 
-            print("============\nPropiedades\n===============")
-            print("Capacitancia" + str(capacitancia))
-            print("voltaje_placa" + str(voltaje_placa))
-            print("carga_placa" + str(carga_placa))
-            print("energia" + str(energia))
-            print("carga_libre" + str(carga_libre))
-            print("carga_ligada" + str(carga_ligada))
+            if esfera == "Si" and dimension == "A la mitad":
+                self.setFixedSize(1255, 890)
+                self.informationLabel.resize(561,481)
+
+                esferahalf = Esferico.Esfera(voltaje, radioA, radioB, 2)
+
+                self.informationLabel.resize(551, 481)
+
+                print("Capacitor con placas con dielectrico a la mitad")
+                placas_kmitad = QPixmap("esfericomitad_.png")
+                self.imageLabel.setPixmap(placas_kmitad)
+                self.imageLabel.setScaledContents(True)
+
+
+                self.capacitanciaLabel.setText(str(esferahalf.Capacitancia()) + " F")
+                self.cargaLabel.setText(str(esferahalf.Carga()) + " C")
+                self.energiaLabel.setText(str(esferahalf.Energia()) + " J")
+
+                self.cargalibreLabel.setText("(R interno superior) "+str(esferahalf.Densidad(1))+" C/m^2")
+                self.cargaLibre2Label.setText("(R externo inferior) "+str(esferahalf.Densidad(2))+"C/m^2")
+
+                self.cargaLigada1Label.setText("(R interior inferior) "+str(esferahalf.DensidadLigada(1))+" C/m^2")
+                self.cargaLigada2Label.setText("(R exterior inferior) "+str(esferahalf.DensidadLigada(2))+" C/m^2")
+
+                self.cargaLibre3Label.setText("(R interno inferior) "+str(esferahalf.Densidad(3))+" C/m^2")
+                self.cargaLibre4Label.setText("(R externo inferior) "+str(esferahalf.Densidad(4))+" C/m^2")
+
 
