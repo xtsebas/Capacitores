@@ -11,6 +11,7 @@ class MyGUI(QMainWindow):
     def __init__(self):
         super(MyGUI,self).__init__()
         uic.loadUi("mainscreen.ui",self)
+        self.setFixedSize(752, 372)
 
         """
         Setting main screen buttons

@@ -64,7 +64,6 @@ class EsfericosSreen(QMainWindow):
     Funciones de display de parametros en vivo
     """
     def voltajeOnChange(self,voltaje):
-        print(voltaje)
         self.voltajeLabel.setText(str(voltaje)+" V")
         self.voltajeBar.setValue(voltaje)
 
@@ -98,16 +97,9 @@ class EsfericosSreen(QMainWindow):
         radioA = self.radioASlider.value() ##Interno
         radioB = self.radioBSlider.value() #Externo
 
-        print("Valor del voltaje: "+str(voltaje)+" "+ str(type(voltaje)))
-        print("Valor del radio A " + str(radioA) + " " + str(type(radioA)))
-        print("Valor del radio B: " + str(radioB) + " " + str(type(radioB)))
-
         #Selccionando imagen
         esfera = self.dielectricoComboBox.currentText()
-        print(esfera)
-
         dimension = self.dimensionComboBox.currentText()
-        print(dimension)
 
         if radioA >= radioB:
 
@@ -115,7 +107,6 @@ class EsfericosSreen(QMainWindow):
         else:
 
             #Dimensionando
-            print("Realizando calculos....")
             self.imageLabel.setVisible(True)
             self.setFixedSize(1253, self.y)
             self.adviseLabel.setVisible(False)
@@ -127,20 +118,14 @@ class EsfericosSreen(QMainWindow):
                 self.informationLabel.resize(551, 171)
 
                 #Se escogio con vacio
-                print("Capacitor esferico sin dielectrico")
+
                 placas_vacias = QPixmap("esferico_.png") #Cambiar por esferico
                 self.imageLabel.setPixmap(placas_vacias)
                 self.imageLabel.setScaledContents(True)
 
-                print("Valor del voltaje: " + str(voltaje) + " " + str(type(voltaje)))
-                print("Valor del radio A " + str(radioA) + " " + str(type(radioA)))
-                print("Valor del radio B: " + str(radioB) + " " + str(type(radioB)))
                 esfera = Esferico.Esfera(voltaje, radioA, radioB, 0)
 
-                try:
-                    print(esfera.Capacitancia())
-                except Exception as e:
-                    print(f"An error occurred: {e}")
+
 
                 #Label values
                 self.capacitanciaLabel.setText(str(esfera.Capacitancia()) + " F")
@@ -154,7 +139,6 @@ class EsfericosSreen(QMainWindow):
 
                 self.informationLabel.resize(551, 371)
 
-                print("Capacitor con placas con dielectrico completo")
                 placas_kcompleto= QPixmap("esfericocompleto_.png")
                 self.imageLabel.setPixmap(placas_kcompleto)
                 self.imageLabel.setScaledContents(True)
@@ -178,7 +162,6 @@ class EsfericosSreen(QMainWindow):
 
                 self.informationLabel.resize(551, 481)
 
-                print("Capacitor con placas con dielectrico a la mitad")
                 placas_kmitad = QPixmap("esfericomitad_.png")
                 self.imageLabel.setPixmap(placas_kmitad)
                 self.imageLabel.setScaledContents(True)

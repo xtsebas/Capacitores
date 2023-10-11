@@ -2,19 +2,19 @@ from PyQt5.QtWidgets import *
 from PyQt5 import uic
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import Qt
-import PlacasParalelas
+import Cilindrico
 
 
 class CilindricosScreen(QMainWindow):
-
     def __init__(self,main_window=None):
+        self.y=894
         super(CilindricosScreen,self).__init__()
-        uic.loadUi("cilindros_.ui",self)
+        uic.loadUi("cilindricos_.ui",self)
 
         #Guardando variable
         self.main_window = main_window
         self.imageLabel.setVisible(False)
-        self.setFixedSize(664, 709)
+        self.setFixedSize(664, self.y)
 
 
         """
@@ -22,12 +22,13 @@ class CilindricosScreen(QMainWindow):
         """
         self.calculateButton.clicked.connect(self.mostrarCalculos)
 
+
         """
         Ajudstes de sliders
         """
-        self.separacionSlider.valueChanged.connect(self.separationChange)
-        self.anchoSlider.valueChanged.connect(self.anchoChange)
-        self.largoSlider.valueChanged.connect(self.largoChange)
+        self.radioASlider.valueChanged.connect(self.separationChange)
+        self.radioBSlider.valueChanged.connect(self.anchoChange)
+        self.largoSlider.valueChanged.connect(self.largoOnChange)
 
 
         """
@@ -42,19 +43,13 @@ class CilindricosScreen(QMainWindow):
         self.dimensionComboBox.addItems(["Completo","A la mitad"])
 
         self.voltajeBar.setTextVisible(False)
-
-
-        #pixmap = QPixmap("image.png")
-
-        #self.imageLabel.setPixmap(pixmap)
-        #self.imageLabel.setScaledContents(True)
+        self.adviseLabel.setVisible(False)
 
         batteryPixMap = QPixmap("battery.png")
-        batteryPixMap = batteryPixMap.scaled(100, 100, Qt.KeepAspectRatio)
+        batteryPixMap= batteryPixMap.scaled(80, 80, Qt.KeepAspectRatio)
 
         self.batteryLabel.setPixmap(batteryPixMap)
-        self.batteryLabel.setFixedSize(100, 100)
-
+        self.batteryLabel.setFixedSize(80, 80)
 
         self.show()
 
@@ -63,18 +58,17 @@ class CilindricosScreen(QMainWindow):
     Funciones de display de parametros en vivo
     """
     def voltajeOnChange(self,voltaje):
-        print(voltaje)
         self.voltajeLabel.setText(str(voltaje)+" V")
         self.voltajeBar.setValue(voltaje)
 
     def separationChange(self,separation):
-        self.separacionLabel.setText(str(separation) + " cm")
+        self.separacionLabel.setText(str(separation) + " m")
 
     def anchoChange(self,ancho):
-        self.anchoLabel.setText(str(ancho) + " cm")
+        self.anchoLabel.setText(str(ancho) + " m")
 
-    def largoChange(self,largo):
-        self.largoLabel.setText(str(largo) + " cm")
+    def largoOnChange(self,largo):
+        self.largoLabel.setText(str(largo) + " m")
 
     """
     Funciones de navegacion
@@ -84,119 +78,96 @@ class CilindricosScreen(QMainWindow):
         if self.main_window:
             self.main_window.show()
 
+    """
+    Funcion de cierre de ventana
+    """
     def closeEvent(self, event):
-        """This method is triggered when the Form window is closed."""
         self.backToMenu()
         event.accept()
 
     def mostrarCalculos(self):
 
-        print("Realizando calculos....")
-        self.imageLabel.setVisible(True)
-        self.setFixedSize(1253, 709)
-
         #Obteniendo valores de usuario
-
-        voltaje = self.dial.value()
-        separacion = self.separacionSlider.value()
-        ancho = self.anchoSlider.value()
+        voltaje = self.dial.value() #Voltaje
+        radioA = self.radioASlider.value() ##Interno
+        radioB = self.radioBSlider.value() #Externo
         largo = self.largoSlider.value()
 
-        print("Valor del voltaje: "+str(voltaje)+" "+str(type(voltaje)))
-        print("Valor del separacion: " + str(separacion) + " " + str(type(separacion)))
-        print("Valor del ancho: " + str(ancho) + " " + str(type(ancho)))
-        print("Valor del largo: " + str(largo) + " " + str(type(largo)))
+        cilindro_ = self.dielectricoComboBox.currentText()
+        dimension = self.dimensionComboBox.currentText() #Dimension dielectrico
+
+        if radioA >= radioB:
+            self.adviseLabel.setVisible(True)
+
+        else:
+
+            #Dimensionando
+            self.imageLabel.setVisible(True)
+            self.setFixedSize(1253, self.y)
+            self.adviseLabel.setVisible(False)
+
+            if cilindro_=="No":
+                #Resize
+                self.setFixedSize(1253, self.y)
+                self.informationLabel.resize(551, 171)
+
+                placas_vacias = QPixmap("cilindricoNormal.png") #Cambiar por esferico
+                self.imageLabel.setPixmap(placas_vacias)
+                self.imageLabel.setScaledContents(True)
+
+                Cilindro = Cilindrico.Cilindrico(voltaje, radioA, radioB,largo, 0)
+
+                #Label values
+                self.capacitanciaLabel.setText(str(Cilindro.Capacitancia()) + " F")
+                self.cargaLabel.setText(str(Cilindro.Carga()) + " C")
+                self.energiaLabel.setText(str(Cilindro.Energia()) + " J")
+
+            if cilindro_=="Si" and dimension == "Completo":
+
+                self.resize(1250,918)
+                self.informationLabel.resize(551, 371)
+
+                placas_kcompleto= QPixmap("cilindricoCompleto.png")
+
+                #Resize
+                self.imageLabel.setPixmap(placas_kcompleto)
+                self.imageLabel.setScaledContents(True)
+
+                Cilindrofull = Cilindrico.Cilindrico(voltaje, radioA, radioB, largo, 1)
+
+                self.capacitanciaLabel.setText(str(Cilindrofull.Capacitancia()) + " F")
+                self.cargaLabel.setText(str(Cilindrofull.Carga()) + " C")
+                self.energiaLabel.setText(str(Cilindrofull.Energia()) + " J")
+
+                self.cargalibreLabel.setText("(R interno aire) " + str(Cilindrofull.Densidad(1)) + " C/m^2")
+                self.cargaLibre2Label.setText("(R externo aire) " + str(Cilindrofull.Densidad(2)) + "C/m^2")
+
+                self.cargaLigada1Label.setText("(R interior) " + str(Cilindrofull.DensidadLigada(1)) + " C/m^2")
+                self.cargaLigada2Label.setText("(R exterior) " + str(Cilindrofull.DensidadLigada(2)) + " C/m^2")
 
 
+            if cilindro_ == "Si" and dimension == "A la mitad":
+                self.setFixedSize(1255, 890)
+                self.informationLabel.resize(561,481)
+                self.informationLabel.resize(551, 481)
 
+                placas_kmitad = QPixmap("cilindricoMitad.png")
+                self.imageLabel.setPixmap(placas_kmitad)
+                self.imageLabel.setScaledContents(True)
 
-        #Selccionando imagen
-        placa = self.dielectricoComboBox.currentText()
-        print(placa)
+                Cilindrohalf = Cilindrico.Cilindrico(voltaje, radioA, radioB, largo ,2)
 
-        dimension = self.dimensionComboBox.currentText()
-        print(dimension)
+                #LabelValues
+                self.capacitanciaLabel.setText(str(Cilindrohalf.Capacitancia()) + " F")
+                self.cargaLabel.setText(str(Cilindrohalf.Carga()) + " C")
+                self.energiaLabel.setText(str(Cilindrohalf.Energia()) + " J")
 
-        if placa=="No":
-            #Se escogio con vacio
-            print("Capacitor con placas paralelas vacias")
-            placas_vacias = QPixmap("placa_vacia.png")
-            self.imageLabel.setPixmap(placas_vacias)
-            self.imageLabel.setScaledContents(True)
-            placa_vacia = PlacasParalelas.Placas(voltaje, separacion / 100, largo / 100, ancho / 100, 0)
+                self.cargalibreLabel.setText("(R interno superior) " + str(Cilindrohalf.Densidad(1)) + " C/m^2")
+                self.cargaLibre2Label.setText("(R externo superior) " + str(Cilindrohalf.Densidad(2)) + "C/m^2")
+                
+                self.cargaLigada1Label.setText("(R interior inferior) " + str(Cilindrohalf.DensidadLigada(1)) + " C/m^2")
+                self.cargaLigada2Label.setText("(R exterior inferior)  " + str(Cilindrohalf.DensidadLigada(2)) + " C/m^2")
 
-            #Propiedades fisicas
-            capacitancia = placa_vacia.Capacitancia()
-            voltaje_placa = placa_vacia.voltaje
-            carga_placa = placa_vacia.Carga()
-            energia = placa_vacia.Energia()
-
-            print("============\nPropiedades\n===============")
-            print("Capacitancia" + str(placa_vacia.Capacitancia()))
-            print("voltaje_placa" + str(placa_vacia.voltaje))
-            print("carga_placa" + str(placa_vacia.Carga()))
-            print("energia" + str(placa_vacia.Energia()))
-
-
-
-
-        if placa=="Si" and dimension == "Completo":
-            #Se escogio con vacio
-            print("Capacitor con placas con dielectrico completo")
-            placas_kcompleto= QPixmap("placa_kcompleto.png")
-            self.imageLabel.setPixmap(placas_kcompleto)
-            self.imageLabel.setScaledContents(True)
-            placa_dieCom = PlacasParalelas.Placas(voltaje, separacion / 100, largo / 100, ancho / 100, 1)
-
-            #Propiedades
-            capacitancia = placa_dieCom.Capacitancia()
-            voltaje_placa = placa_dieCom.voltaje
-            carga_placa = placa_dieCom.Carga()
-            energia = placa_dieCom.Energia()
-            carga_libre = placa_dieCom.Densidad()
-            carga_ligada = placa_dieCom.DensidadLigada()
-
-            print("============\nPropiedades\n===============")
-            print("Capacitancia" +str(placa_dieCom.Capacitancia()))
-            print("voltaje_placa" + str(placa_dieCom.voltaje))
-            print("carga_placa" + str(placa_dieCom.Carga()))
-            print("energia" + str(placa_dieCom.Energia()))
-            print("carga_libre" + str(placa_dieCom.Densidad()))
-            print("carga_ligada" + str(placa_dieCom.DensidadLigada()))
-
-
-
-        if placa == "Si" and dimension == "A la mitad":
-            print("Capacitor con placas con dielectrico a la mitad")
-            placas_kmitad = QPixmap("placa_kmitad.png")
-            self.imageLabel.setPixmap(placas_kmitad)
-            self.imageLabel.setScaledContents(True)
-            placa_dieMitad = PlacasParalelas.Placas(voltaje, separacion / 100, largo / 100, ancho / 100, 2)
-
-
-
-            try:
-                # Propiedades
-                capacitancia = placa_dieMitad.Capacitancia()
-                voltaje_placa = placa_dieMitad.voltaje
-                carga_placa = placa_dieMitad.Carga()
-                energia = placa_dieMitad.Energia()
-                carga_libre = placa_dieMitad.Densidad()
-                carga_ligada = placa_dieMitad.DensidadLigada()
-                print(carga_ligada)
-
-                print("============\nPropiedades\n===============")
-                print("Capacitancia" + str(placa_dieMitad.Capacitancia()))
-                print("voltaje_placa" + str(placa_dieMitad.voltaje))
-                print("carga_placa" + str(placa_dieMitad.Carga()))
-                print("energia" + str(placa_dieMitad.Energia()))
-                print("carga_libre" + str(placa_dieCom.Densidad))
-                print("carga_ligada" + str(placa_dieCom.DensidadLigada()))
-
-
-            except:
-                print("error...")
-
-
-
+                self.cargaLibre3Label.setText("(R interno inferior) " + str(Cilindrohalf.Densidad(3)) + " C/m^2")
+                self.cargaLibre4Label.setText("(R externo inferior) " + str(Cilindrohalf.Densidad(4)) + " C/m^2")
 
